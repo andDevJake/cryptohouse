@@ -12,11 +12,19 @@ import java.text.DecimalFormat;
 public class Utils {
 	
 	public static String requestAPI(String url) {
+		String clientId     = "oHvZMvSricYeIt0b9hKN";//애플리케이션 클라이언트 아이디값
+		String clientSecret = "thPUDjcvP0";//애플리케이션 클라이언트 시크릿값
+		
 		String result = null;
 		try {
 			URL reqUrl = new URL(url);
 			HttpURLConnection conn = (HttpURLConnection) reqUrl.openConnection();
 			conn.setRequestMethod("GET");
+			
+			if(url.contains("naver")) {
+				conn.setRequestProperty("X-Naver-Client-Id", clientId);
+				conn.setRequestProperty("X-Naver-Client-Secret", clientSecret);
+			}
 			result = convertInputStreamToString(conn.getInputStream());
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -53,5 +61,15 @@ public class Utils {
      */
     public static String delNumFormat(String str){
         return str.replace(",","");
+    }
+    
+    /**
+     * 모든 HTML 태그를 제거하고 반환한다.
+     * 
+     * @param html
+     * @throws Exception  
+     */
+    public static String removeTag(String html) {
+    	return html.replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>", "");
     }
 }

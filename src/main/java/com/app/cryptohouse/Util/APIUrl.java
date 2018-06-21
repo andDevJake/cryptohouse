@@ -8,4 +8,6 @@ public class APIUrl {
 	public static final String COINNEST_API_URL = "https://api.coinnest.co.kr/api/pub/ticker?coin=";
 	public static final String BINANCE_API_URL  = "https://api.binance.com/api/v1/ticker/24hr?symbol=%s";
 	
+	public static final String NAVER_NEWS_API_URL = "https://openapi.naver.com/v1/search/news.json?query=%s&display=%s&start=%s&sort=%s";
+	
 }
